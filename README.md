@@ -1,4 +1,4 @@
-##Epsilon-Greedy
+## Epsilon-Greedy
 ____
 
 **Epsilon-Greedy** is a common approach to balancing the exploitation-exploration trade-off is the epsilon- or e-greedy algorithm.
