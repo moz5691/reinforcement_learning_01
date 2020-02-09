@@ -2,22 +2,44 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-class Bandit:
+class Slot:
     def __init__(self, m):
+        """
+        init m with its own value.  this 'm' is meant to be hidden value to a player.
+        :param m:
+        """
         self.m = m
         self.mean = 0
         self.N = 0
 
     def pull(self):
+        """
+        return m + random number, it means return is close to m
+        :return:
+        """
         return np.random.randn() + self.m
 
     def update(self, x):
+        """
+        update mean with new value of x
+        :param x: new value from pull()
+        :return: update total N and mean
+        """
         self.N += 1
         self.mean = (1-1.0/self.N) * self.mean + 1/self.N * x
 
 
 def run_experiment(m1, m2, m3, eps, N):
-    bandits = [Bandit(m1), Bandit(m2), Bandit(m3)]
+    """
+    run three different Slots with different hidden return values.
+    :param m1: hidden return value
+    :param m2: hidden return value
+    :param m3: hidden return value
+    :param eps: epsilon-greedy value
+    :param N: number of plays per each Slots
+    :return: cumulative average
+    """
+    bandits = [Slot(m1), Slot(m2), Slot(m3)]
 
     data = np.empty(N)
 
